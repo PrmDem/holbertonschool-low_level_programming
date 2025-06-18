@@ -14,7 +14,7 @@ int main(void)
 	{
 		putchar(i);
 		i++;
- 
+
 		if (i >= 49 && i <= 57)
 		{
 			putchar(',');
