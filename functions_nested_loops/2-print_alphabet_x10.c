@@ -6,9 +6,20 @@
 
 void print_alphabet_x10(void)
 {
-	int i;
+	int n = 1, i;
 
-	for (i = 0; i <= 10; i++)
-		print_alphabet();
+	while (n <= 10)
+	{
+		i = 97;
+
+		while (i <= 122)
+		{
+			_putchar(i);
+			i++;
+		}
+
+		_putchar('\n');
+		n++;
+	}
 
 }
