@@ -25,7 +25,7 @@ int _atoi(char *s)
 
 		if (s[len] >= 48 && s[len] <= 57)
 		{
-			num = num * 10 + (s[len] - 48);
+			num = num * 10 + s[len] - 48;
 			count++;
 		}
 
@@ -33,7 +33,9 @@ int _atoi(char *s)
 	}
 
 	if (min % 2 != 0)
-		num = num * (-1);
+	{
+		num *= (-1);
+	}
 
 	return (num);
 }
