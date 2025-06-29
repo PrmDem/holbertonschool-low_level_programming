@@ -16,14 +16,14 @@ char *leet(char *str)
 	while (str[i] != '\0')
 	{
 		int j = 0;
-		
+
 		while (j < 5)
 		{
 			if (str[i] == base[j] || str[i] == (base[j] - 32))
 			{
-			       	str[i] = leet[j];
+				str[i] = leet[j];
 				break;
-        		}
+			}
 
 			j++;
 		}
