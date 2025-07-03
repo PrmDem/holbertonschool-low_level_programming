@@ -3,7 +3,6 @@
 /**
  * print_chessboard - prints the chessboard
  * @a: ref to the number of arrays total
- * @8: number of elements per array
  *
  * return: none (void)
  */
