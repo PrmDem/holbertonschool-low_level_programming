@@ -38,5 +38,8 @@ char *_strpbrk(char *s, char *accept)
 			i++;
 	}
 
+	if (s[i] == '\0' && count == 0)
+		s = &s[i];
+
 	return (s);
 }
