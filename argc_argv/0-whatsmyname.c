@@ -1,7 +1,15 @@
 #include <stdio.h>
 #include "main.h"
 
-int main(int argc, char *argv[])
+/**
+ * name - prints the name of the program
+ * @argc: number of arguments
+ * @argv: arguments given
+ *
+ * Return: always 0.
+ */
+
+int name(int argc, char *argv[])
 {
         (void)argc;
 	
