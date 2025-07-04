@@ -2,14 +2,14 @@
 #include "main.h"
 
 /**
- * name - prints the name of the program
+ * main - prints the name of the program
  * @argc: number of arguments
  * @argv: arguments given
  *
  * Return: always 0.
  */
 
-int name(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	(void)argc;
 
