@@ -34,4 +34,6 @@ char *_strdup(char *str)
 
     else
         return (copy);
+
+    free(copy);
 }
