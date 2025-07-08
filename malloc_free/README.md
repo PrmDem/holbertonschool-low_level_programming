@@ -1,3 +1,3 @@
 PROJECT MALLOC, FREE
 Number of tasks total: 5
-Completed:
+Completed: 3
