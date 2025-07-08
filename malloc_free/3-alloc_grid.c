@@ -3,29 +3,38 @@
 #include "main.h"
 
 /**
-* **alloc_grid - returns pointer to 2d array
-* @width: width of array
-* @height: height of array
-*
-* Return: pointer to 2d array
-* or NULL if fail.
-*/
+ * alloc_grid - returns pointer to 2d array
+ * @width: columns
+ * @height: rows
+ *
+ * Return: pointer to array, or
+ * NULL if fail or any arg <= 0
+ */
 
 int **alloc_grid(int width, int height)
 {
-    int *twod_arr;
-    int total = width * height;
-    int i;
+	int **grid;
+	int i, j;
 
-    if (width <= 0 || height <= 0)
-        return (NULL);
+	if (width <= 0 || height <= 0)
+		return (NULL);
 
-    twod_arr = malloc(sizeof(int) * total);
+	grid = malloc(sizeof(int *) * height);
 
-    while (i <= total)
-    {
-        twod_arr[i][i] = 0;
-    }
+	if (grid == NULL)
+		return (NULL);
 
-    return (twod_arr);
+	for (i = 0; i < height; i++)
+	{
+		grid[i] = malloc(sizeof(int) * width);
+		if (grid == NULL)
+			return (NULL);
+
+		for (j = 0; j < width; j++)
+		{
+			grid[i][j] = 0;
+		}
+	}
+
+	return (grid);
 }
