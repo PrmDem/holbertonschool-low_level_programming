@@ -45,6 +45,9 @@ char *str_concat(char *s1, char *s2)
 
 	fullstr = malloc(sizeof(char) * len + 1);
 
+	if (fullstr == NULL)
+		return (NULL);
+
 	for (i = 0; i < size1; i++)
 	{
 		fullstr[i] = s1[i];
@@ -58,6 +61,4 @@ char *str_concat(char *s1, char *s2)
 	fullstr[len] = '\0';
 
 	return (fullstr);
-
-	free(fullstr);
 }
