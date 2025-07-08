@@ -12,28 +12,28 @@
 
 char *_strdup(char *str)
 {
-    int i = 0;
-    int size;
-    char *copy;
+	int i = 0;
+	int size;
+	char *copy;
 
-    while (str[i] != '\0')
-    {
-        i++;
-        size = i + 1;
-    }
+	while (str[i] != '\0')
+	{
+		i++;
+		size = i + 1;
+	}
 
-    copy = malloc(sizeof(char) * size);
+	copy = malloc(sizeof(char) * size);
 
-    for (i = 0; i < size; i++)
-    {
-        copy[i] = str[i];
-    }
+	for (i = 0; i < size; i++)
+	{
+		copy[i] = str[i];
+	}
 
-    if (*str == '\0')
-        return (NULL);
+	if (*str == '\0')
+		return (NULL);
 
-    else
-        return (copy);
+	else
+		return (copy);
 
-    free(copy);
+	free(copy);
 }
