@@ -4,7 +4,7 @@
 
 /**
 * malloc_checked - allocates memory
-* @b: unsigned int to allocate to
+* @b: amount of memory to allocate
 *
 * Return: pointer to allocated memory
 */
