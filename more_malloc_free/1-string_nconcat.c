@@ -30,13 +30,13 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		size1 = i;
 	}
 
-	while (s2[j])
+	while (s2[j] != '\0')
 	{
 		j++;
 	}
 
 	if (n >= j)
-		n = j;
+			n = j;
 
 	len = size1 + n + 1;
 	string = malloc(sizeof(char) * len);
