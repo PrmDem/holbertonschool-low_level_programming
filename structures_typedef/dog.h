@@ -2,6 +2,21 @@
 #define DOG_H
 
 /**
+* name - typedef for string of chars
+*/
+typedef char *name;
+
+/**
+* age - typedef for float
+*/
+typedef float age;
+
+/**
+* char - typedef for string of chars
+*/
+typedef char *owner;
+
+/**
 * struct dog - for our dog facts
 * @name: dog's name
 * @age: dog's age
@@ -14,7 +29,7 @@
 struct dog
 {
 	char *name;
-	float *age;
+	float age;
 	char *owner;
 };
 
