@@ -16,7 +16,7 @@ void *malloc_checked(unsigned int b)
 	mall = malloc(b);
 
 	if (mall == NULL)
-		exit (98);
-	
+		exit(98);
+
 	return (mall);
 }
