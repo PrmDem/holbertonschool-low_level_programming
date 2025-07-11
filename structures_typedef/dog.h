@@ -17,6 +17,11 @@ typedef float age;
 typedef char *owner;
 
 /**
+* dog_t - typedef for struct dog
+*/
+typedef struct dog dog_t;
+
+/**
 * struct dog - for our dog facts
 * @name: dog's name
 * @age: dog's age
