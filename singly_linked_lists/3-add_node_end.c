@@ -1,23 +1,6 @@
 #include "lists.h"
 
 /**
- * _strlen - returns length of a string
- * @s: pointer for first char of string
- *
- * Return: int that is length of string
- */
-
-int _strlen(char *s)
-{
-	int length = 0;
-
-	while (s[length] != '\0')
-		length++;
-
-	return (length);
-}
-
-/**
  * add_node_end - adds a new node at the end of a list
  * @head: pointer to pointer of new node
  * @str: data stored in the node
@@ -28,31 +11,42 @@ int _strlen(char *s)
 
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new_at_end;
-	list_t *last = *head;
+	list_t *new_end;
+	list_t *last;
+	unsigned int length = 0;
 
-	new_at_end = malloc(sizeof(list_t));
-	if (new_at_end == NULL)
+	while (str[length] != '\0')
 	{
-		free(new_at_end);
+		length++;
+	}
+
+	new_end = malloc(sizeof(list_t));
+	if (new_end == NULL)
+	{
 		return (NULL);
 	}
 
-	new_at_end->str = strdup(str);
-	new_at_end->len = _strlen(str);
-	new_at_end->next = NULL;
+	new_end->str = strdup(str);
+	new_end->len = length;
+	new_end->next = NULL;
 
 	if (*head == NULL)
 	{
-		*head = new_at_end;
+		*head = new_end;
+		return (new_end);
 	}
 
-	while (last->next != NULL)
+	if (*head != NULL)
 	{
-		last = last->next;
+		last = *head;
+
+		while (last->next != NULL)
+		{
+			last = last->next;
+		}
+
+		last->next = new_end;
 	}
 
-	last->next = new_at_end;
-
-	return (new_at_end);
+	return (new_end);
 }
