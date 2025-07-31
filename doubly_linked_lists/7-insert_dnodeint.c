@@ -33,7 +33,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		index++;
 	}
 
-	while (iprev <= (idx - 1)) /* sets insprev to node before wanted position */
+	while (iprev < (idx - 1)) /* sets insprev to node before wanted position */
 	{
 		insprev = insprev->next;
 		iprev++;
