@@ -15,7 +15,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	if (*head != NULL)
 		bridge = *head;
 	else
-		return (1);
+		return (-1);
 
 	while (idx < index)
 	{
