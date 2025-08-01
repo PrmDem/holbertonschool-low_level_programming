@@ -2,8 +2,8 @@
 In which we learn how to use __system calls__, __flags__, and how to __set file permissions__.<br/>
 ## Details
 __Number of tasks:__ 4<br/>
-__Partially completed:__ N/A<br/>
-__Fully completed:__ N/A<br/>
+__Partially completed:__ 2<br/>
+__Fully completed:__ 1<br/>
 ### Task 0
 Writing a function that reads a text file and prints it to stdout.
 ### Task 1
