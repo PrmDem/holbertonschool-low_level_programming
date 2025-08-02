@@ -9,12 +9,13 @@
  */
 int copy_filetofile(const char *filename1, const char *filename2)
 {
-	int fd1, fd2;
-	int bread, copy, cl;
+	int fd1, fd2, bread, copy, cl;
 	char *buffer;
-	size_t contlen = 0;
+	size_t lcount = 0;
 
 	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
+		return (0);
 
 	fd1 = open(filename1, O_RDONLY);
 	if (fd1 == -1)
@@ -22,10 +23,6 @@ int copy_filetofile(const char *filename1, const char *filename2)
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename1);
 		exit(98);
 	}
-
-	bread = read(fd1, buffer, 1024);
-	if (bread == -1)
-		return (-1);
 
 	fd2 = open(filename2, O_RDWR | O_TRUNC);
 	if (fd2 == -1)
@@ -36,14 +33,45 @@ int copy_filetofile(const char *filename1, const char *filename2)
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2);
 		}
 
-		while (buffer[contlen] != '\0')
+		bread = read(fd1, buffer, 1024);
+		if (bread == -1)
 		{
-			contlen++;
+			free(buffer);
+			close(fd2);
+			return (-1);
 		}
 
-		if (buffer != NULL)
+		while (buffer[lcount] != '\0')
 		{
-			copy = write(fd2, buffer, contlen);
+			lcount++;
+		}
+
+		copy = write(fd2, buffer, lcount);
+			if (copy == -1)
+				return (-1);
+
+		if (bread >= 1024)
+		{
+			int index;
+			free(buffer);
+			buffer = malloc(sizeof(char) * 1024);
+			if (buffer == NULL)
+				return (-1);
+			
+			for (index = 0; index <= 1024; index++ )
+			{
+				buffer[index] = '\0';
+			}
+
+			bread = read(fd1, buffer, 1024);
+			lcount = 0;
+
+			while (buffer[lcount] != '\0')
+			{
+				lcount++;
+			}
+
+			copy = write(fd2, buffer, lcount);
 			if (copy == -1)
 				return (-1);
 		}
