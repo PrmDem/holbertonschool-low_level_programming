@@ -31,6 +31,7 @@ int copy_filetofile(const char *filename1, const char *filename2)
 		if (fd2 == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2);
+			exit (99);
 		}
 
 		bread = read(fd1, buffer, 1024);
@@ -73,7 +74,10 @@ int copy_filetofile(const char *filename1, const char *filename2)
 
 			copy = write(fd2, buffer, lcount);
 			if (copy == -1)
-				return (-1);
+			{
+				dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2);
+				exit (99);
+			}
 		}
 	}
 
