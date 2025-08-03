@@ -9,49 +9,48 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	char *valcopy;
 	hash_node_t *new_node;
+	unsigned long int hashkey, index;
+	char *valcopy;
 
-	int idx = 0;
-
-	if (ht == NULL)
+	if (ht == NULL || key == NULL)
 		return (0);
 
-	if (key == NULL)
-		return (0);
+	hashkey = hash_djb2((unsigned char *)key);
+	index = key_index((unsigned char *)key, ht->size);
+	valcopy = strdup(value);
 
 	new_node = malloc(sizeof(hash_node_t));
-
 	if (new_node == NULL)
 		return (0);
 
-	if ((*value) != '\0')
+	new_node->key = (char *)hashkey;
+	new_node->value = valcopy;
+
+	if (ht->array[index] == NULL)
 	{
-		while (value[idx] != '\0')
-		{
-			idx++;
-		}
-
-		valcopy = malloc(sizeof(char) * idx + 1);
-
-		for (idx = 0; value[idx] != '\0'; idx++)
-		{
-			valcopy[idx] = value[idx];
-			valcopy[idx + 1] = '\0';
-		}
-
-		new_node->value = valcopy;
+		new_node->next = NULL;
+		ht->array[index] = new_node;
 	}
 
 	else
 	{
-		new_node->value = NULL;
+		hash_node_t *temp = ht->array[index];
+
+		while (temp != NULL)
+		{
+			if (temp->key == new_node->key)
+			{
+				free(temp->value);
+				temp->value = valcopy;
+				free(new_node->key);
+				free(new_node);
+				return (1);
+			}
+			temp = temp->next;
+		}
+		new_node->next = ht->array[index];
+		ht->array[index] = new_node;
 	}
-
-	new_node->key = (char *)key;
-	new_node->next = (*ht->array);
-
-	(*ht->array) = new_node;
-
 	return (1);
 }
