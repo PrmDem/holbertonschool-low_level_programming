@@ -19,7 +19,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (new_node == NULL)
 		return (0);
 
-	if (value != NULL)
+	if ((*value) != '\0')
 	{
 		while (value[idx] != '\0')
 		{
