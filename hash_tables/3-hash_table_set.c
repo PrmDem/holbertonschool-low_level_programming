@@ -10,13 +10,12 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *new_node;
-	unsigned long int hashkey, index;
+	unsigned long int index;
 	char *valcopy;
 
 	if (ht == NULL || key == NULL)
 		return (0);
 
-	hashkey = hash_djb2((unsigned char *)key);
 	index = key_index((unsigned char *)key, ht->size);
 	valcopy = strdup(value);
 
@@ -24,28 +23,27 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (new_node == NULL)
 		return (0);
 
-	new_node->key = (char *)hashkey;
+	new_node->key = (char *)key;
 	new_node->value = valcopy;
 
 	if (ht->array[index] == NULL)
 	{
-		new_node->next = NULL;
 		ht->array[index] = new_node;
+		return (1);
 	}
-
 	else
 	{
-		if (ht->array[index]->key == new_node->key)
+		if (strcmp(ht->array[index]->key, new_node->key) == 0)
 		{
 			free(ht->array[index]->value);
 			ht->array[index]->value = valcopy;
 			free(new_node);
-			return (1);
 		}
-		ht->array[index] = ht->array[index]->next;
+		else
+		{
+			new_node->next = ht->array[index];
+			ht->array[index] = new_node;
+		}
+		return (1);
 	}
-
-	new_node->next = ht->array[index];
-	ht->array[index] = new_node;
-	return (1);
 }
