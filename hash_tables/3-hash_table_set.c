@@ -35,22 +35,17 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	else
 	{
-		hash_node_t *temp = ht->array[index];
-
-		while (temp != NULL)
+		if (ht->array[index]->key == new_node->key)
 		{
-			if (temp->key == new_node->key)
-			{
-				free(temp->value);
-				temp->value = valcopy;
-				free(new_node->key);
-				free(new_node);
-				return (1);
-			}
-			temp = temp->next;
+			free(ht->array[index]->value);
+			ht->array[index]->value = valcopy;
+			free(new_node);
+			return (1);
 		}
-		new_node->next = ht->array[index];
-		ht->array[index] = new_node;
+		ht->array[index] = ht->array[index]->next;
 	}
+
+	new_node->next = ht->array[index];
+	ht->array[index] = new_node;
 	return (1);
 }
