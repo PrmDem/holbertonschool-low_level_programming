@@ -18,6 +18,11 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 
 	if (ht->array[index] == NULL)
 		return (NULL);
-	else
-		return (ht->array[index]->value);
+
+	while (ht->array[index]->next != NULL)
+	{
+		ht->array[index] = ht->array[index]->next;
+	}
+
+	return (ht->array[index]->value);
 }
