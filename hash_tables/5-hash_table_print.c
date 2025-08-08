@@ -29,16 +29,16 @@ void hash_table_print(const hash_table_t *ht)
 				ncount++;
 				if (ncount < count)
 					printf(", ");
-			}
-		}
-		for (index = 0; index < ht->size; index++)
-		{
-			if (ht->array[index] != NULL && ht->array[index]->next != NULL)
-			{
-				ht->array[index] = ht->array[index]->next;
-				printf("'%s': '%s'", ht->array[index]->key, ht->array[index]->value);
-				if (ht->array[index]->next != NULL)
-					printf(", ");
+
+				while (ht->array[index]->next != NULL)
+				{
+					ht->array[index] = ht->array[index]->next;
+					count++;
+					printf("'%s': '%s'", ht->array[index]->key, ht->array[index]->value);
+					ncount++;
+					if (ncount < count)
+						printf(", ");
+				}
 			}
 		}
 		printf("}\n");
