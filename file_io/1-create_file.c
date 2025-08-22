@@ -26,6 +26,7 @@ int create_file(const char *filename, char *text_content)
 		{
 			count++;
 		}
+		count += 1;
 
 		if (text_content != NULL)
 		{
@@ -34,7 +35,6 @@ int create_file(const char *filename, char *text_content)
 				return (-1);
 		}
 	}
-
 	close(fd);
 	return (1);
 }
